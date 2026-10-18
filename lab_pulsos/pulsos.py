@@ -91,9 +91,9 @@ def corregir_con_anclas(pulsos, anclas, max_dist=None, ajustar_tiempo=False):
 
     1. Cada ancla se pega al pulso detectado más cercano. Si no hay ninguno a menos de
        `max_dist` (por defecto, media distancia típica entre pulsos), se inserta un pulso.
-    2. Fase: en la zona de cada ancla (hasta el punto medio con la siguiente) se desplaza
-       la marca de "fuerte" el número de pulsos que haga falta para que el ancla caiga en
-       fuerte. Se conservan los cambios de compás que vea el modelo.
+    2. Fase: si más de la mitad de las anclas dicen que el fuerte del modelo está corrido
+       el mismo número de pulsos, se corre en toda la obra. Si no, el arreglo es local: el
+       ancla pasa a fuerte y se quita el fuerte del modelo a 1-2 pulsos de ella.
     3. Si `ajustar_tiempo`, se corrige además el desfase entre el ancla y el pulso,
        interpolando linealmente entre anclas (constante fuera de ellas).
     """
@@ -120,28 +120,25 @@ def corregir_con_anclas(pulsos, anclas, max_dist=None, ajustar_tiempo=False):
     fuerte = np.array([p["fuerte"] for p in pulsos], dtype=bool)
     nuevo = fuerte.copy()
 
-    # 2. fase por zonas
-    cortes = [0] + [(a + b) // 2 + 1 for a, b in zip(idx_ancla[:-1], idx_ancla[1:])] + [len(pulsos)]
-    for k, ia in enumerate(idx_ancla):
-        lo, hi = cortes[k], cortes[k + 1]
-        if fuerte[ia]:
-            desp = 0
-        else:
-            fuertes = np.flatnonzero(fuerte)
-            if len(fuertes) == 0:
-                desp = None
-            else:
-                j = fuertes[np.argmin(np.abs(fuertes - ia))]
-                desp = ia - j
-        if desp is None:
-            # el modelo no dio fuertes: se marca solo el ancla
-            nuevo[lo:hi] = False
-        else:
-            zona = np.zeros(len(pulsos), dtype=bool)
-            src = np.flatnonzero(fuerte) + desp
-            src = src[(src >= lo) & (src < hi)]
-            zona[src] = True
-            nuevo[lo:hi] = zona[lo:hi]
+    # 2. fase: desplazamiento global si la mayoría de anclas coincide; si no, arreglo local
+    def desfase(ia, marcas):
+        fuertes = np.flatnonzero(marcas)
+        if len(fuertes) == 0:
+            return None
+        return int(ia - fuertes[np.argmin(np.abs(fuertes - ia))])
+
+    desps = [desfase(ia, fuerte) for ia in idx_ancla]
+    validos = [d for d in desps if d]
+    if validos:
+        comun = max(set(validos), key=validos.count)
+        if validos.count(comun) > len(idx_ancla) / 2:
+            src = np.flatnonzero(fuerte) + comun
+            nuevo[:] = False
+            nuevo[src[(src >= 0) & (src < len(pulsos))]] = True
+    for ia in idx_ancla:
+        d = desfase(ia, nuevo)
+        if d and abs(d) <= 2:
+            nuevo[ia - d] = False  # el fuerte del modelo estaba corrido en este compás
         nuevo[ia] = True
 
     # 3. ajuste de tiempo opcional

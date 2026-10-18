@@ -63,6 +63,11 @@ def puntuar(verdad, pulsos):
     return r
 
 
+def media(dicts):
+    return {k: (None if any(d[k] is None for d in dicts) else float(np.mean([d[k] for d in dicts])))
+            for k in dicts[0]}
+
+
 def anclas_simuladas(verdad, n, ruido_ms, rng):
     """n tiempos fuertes repartidos por la obra, con error humano gaussiano."""
     fuertes = [p["t"] for p in verdad if p["fuerte"]]
@@ -78,6 +83,7 @@ def main(argv=None):
     g.add_argument("--sin-pesos", action="store_true")
     ap.add_argument("--anclas", type=int, default=3)
     ap.add_argument("--ruido-anclas-ms", type=float, default=20.0)
+    ap.add_argument("--sorteos", type=int, default=20, help="sorteos del error de las anclas")
     ap.add_argument("--salida", help="JSON con los resultados")
     args = ap.parse_args(argv)
 
@@ -97,9 +103,10 @@ def main(argv=None):
         beats, downbeats = f2b(str(wav))
         seg = time.perf_counter() - t0
         pulsos = a_lista(beats, downbeats)
-        anclas = anclas_simuladas(verdad, args.anclas, args.ruido_anclas_ms, rng)
-        corr = corregir_con_anclas(pulsos, anclas)
-        corr_t = corregir_con_anclas(pulsos, anclas, ajustar_tiempo=True)
+        # el efecto de las anclas se promedia sobre varios sorteos del error humano
+        sorteos = [anclas_simuladas(verdad, args.anclas, args.ruido_anclas_ms, rng) for _ in range(args.sorteos)]
+        con_anclas = media([puntuar(verdad, corregir_con_anclas(pulsos, a)) for a in sorteos])
+        con_tiempo = media([puntuar(verdad, corregir_con_anclas(pulsos, a, ajustar_tiempo=True)) for a in sorteos])
         fila = {
             "caso": wav.stem,
             "duracion_s": round(dur, 2),
@@ -107,8 +114,8 @@ def main(argv=None):
             "cifras_verdad": [c["pulsos_por_compas"] for c in estimar_cifras(verdad)],
             "cifras_est": [c["pulsos_por_compas"] for c in estimar_cifras(pulsos)],
             "modelo": puntuar(verdad, pulsos),
-            "con_anclas": puntuar(verdad, corr),
-            "con_anclas_y_tiempo": puntuar(verdad, corr_t),
+            "con_anclas": con_anclas,
+            "con_anclas_y_tiempo": con_tiempo,
         }
         filas.append(fila)
         m, a = fila["modelo"], fila["con_anclas"]

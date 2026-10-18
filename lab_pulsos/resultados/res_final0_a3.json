@@ -1,0 +1,318 @@
+{
+ "checkpoint": "final0",
+ "hilos_torch": 4,
+ "carga_modelo_s": 0.34,
+ "casos": [
+  {
+   "caso": "01_tempo_fijo_4x4_100",
+   "duracion_s": 31.8,
+   "s_por_min_audio": 4.526,
+   "cifras_verdad": [
+    4
+   ],
+   "cifras_est": [
+    4
+   ],
+   "modelo": {
+    "F_pulsos_50": 1.0,
+    "F_fuertes_50": 0.9600000000000001,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9600000000000001,
+    "err_mediano_ms": 0.0,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9600000000000001
+   },
+   "con_anclas": {
+    "F_pulsos_50": 1.0,
+    "F_fuertes_50": 0.9600000000000002,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9600000000000002,
+    "err_mediano_ms": 0.0,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9600000000000002
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 1.0,
+    "F_fuertes_50": 0.9600000000000002,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9600000000000002,
+    "err_mediano_ms": 12.20750000000006,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9600000000000002
+   }
+  },
+  {
+   "caso": "02_vals_3x4_150",
+   "duracion_s": 22.2,
+   "s_por_min_audio": 1.72,
+   "cifras_verdad": [
+    3
+   ],
+   "cifras_est": [
+    3
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.9795918367346939,
+    "F_fuertes_50": 0.967741935483871,
+    "F_pulsos_100": 0.9795918367346939,
+    "F_fuertes_100": 0.967741935483871,
+    "err_mediano_ms": 9.999999999999787,
+    "F_pulsos_200": 0.9795918367346939,
+    "F_fuertes_200": 0.967741935483871
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.9795918367346941,
+    "F_fuertes_50": 0.9677419354838712,
+    "F_pulsos_100": 0.9795918367346941,
+    "F_fuertes_100": 0.9677419354838712,
+    "err_mediano_ms": 9.999999999999783,
+    "F_pulsos_200": 0.9795918367346941,
+    "F_fuertes_200": 0.9677419354838712
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.972448979591837,
+    "F_fuertes_50": 0.9677419354838712,
+    "F_pulsos_100": 0.9795918367346941,
+    "F_fuertes_100": 0.9677419354838712,
+    "err_mediano_ms": 14.630000000000091,
+    "F_pulsos_200": 0.9795918367346941,
+    "F_fuertes_200": 0.9677419354838712
+   }
+  },
+  {
+   "caso": "03_rubato_fuerte_4x4",
+   "duracion_s": 35.3,
+   "s_por_min_audio": 3.302,
+   "cifras_verdad": [
+    4
+   ],
+   "cifras_est": [
+    2,
+    3,
+    1
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.6829268292682926,
+    "F_fuertes_50": 0.7142857142857143,
+    "F_pulsos_100": 0.6829268292682926,
+    "F_fuertes_100": 0.7142857142857143,
+    "err_mediano_ms": 9.449999999999736,
+    "F_pulsos_200": 0.6829268292682926,
+    "F_fuertes_200": 0.7142857142857143
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.6829268292682927,
+    "F_fuertes_50": 0.7142857142857142,
+    "F_pulsos_100": 0.6829268292682927,
+    "F_fuertes_100": 0.7142857142857142,
+    "err_mediano_ms": 9.449999999999736,
+    "F_pulsos_200": 0.6829268292682927,
+    "F_fuertes_200": 0.7142857142857142
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.6573170731707317,
+    "F_fuertes_50": 0.6928571428571427,
+    "F_pulsos_100": 0.6829268292682927,
+    "F_fuertes_100": 0.7142857142857142,
+    "err_mediano_ms": 15.882500000000027,
+    "F_pulsos_200": 0.6902439024390243,
+    "F_fuertes_200": 0.7142857142857142
+   }
+  },
+  {
+   "caso": "04_ritardando_3x4",
+   "duracion_s": 28.59,
+   "s_por_min_audio": 1.85,
+   "cifras_verdad": [
+    3
+   ],
+   "cifras_est": [
+    2
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.5964912280701755,
+    "F_fuertes_50": 0.8695652173913043,
+    "F_pulsos_100": 0.5964912280701755,
+    "F_fuertes_100": 0.8695652173913043,
+    "err_mediano_ms": 17.399999999998528,
+    "F_pulsos_200": 0.6666666666666666,
+    "F_fuertes_200": 0.8695652173913043
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.5964912280701753,
+    "F_fuertes_50": 0.8695652173913043,
+    "F_pulsos_100": 0.5964912280701753,
+    "F_fuertes_100": 0.8695652173913043,
+    "err_mediano_ms": 17.39999999999852,
+    "F_pulsos_200": 0.6666666666666665,
+    "F_fuertes_200": 0.8695652173913043
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.5701754385964912,
+    "F_fuertes_50": 0.8217391304347826,
+    "F_pulsos_100": 0.6070175438596491,
+    "F_fuertes_100": 0.8695652173913043,
+    "err_mediano_ms": 18.127500000000214,
+    "F_pulsos_200": 0.6666666666666665,
+    "F_fuertes_200": 0.8695652173913043
+   }
+  },
+  {
+   "caso": "05_anacrusa_1_3x4",
+   "duracion_s": 24.25,
+   "s_por_min_audio": 1.823,
+   "cifras_verdad": [
+    3
+   ],
+   "cifras_est": [
+    3
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.9705882352941176,
+    "F_fuertes_50": 1.0,
+    "F_pulsos_100": 0.9705882352941176,
+    "F_fuertes_100": 1.0,
+    "err_mediano_ms": 10.000000000001563,
+    "F_pulsos_200": 0.9705882352941176,
+    "F_fuertes_200": 1.0
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.9705882352941174,
+    "F_fuertes_50": 1.0,
+    "F_pulsos_100": 0.9705882352941174,
+    "F_fuertes_100": 1.0,
+    "err_mediano_ms": 10.000000000001563,
+    "F_pulsos_200": 0.9705882352941174,
+    "F_fuertes_200": 1.0
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.9514705882352938,
+    "F_fuertes_50": 0.9772727272727273,
+    "F_pulsos_100": 0.9705882352941174,
+    "F_fuertes_100": 1.0,
+    "err_mediano_ms": 13.205000000000002,
+    "F_pulsos_200": 0.9705882352941174,
+    "F_fuertes_200": 1.0
+   }
+  },
+  {
+   "caso": "06_pausa_larga_3s",
+   "duracion_s": 32.67,
+   "s_por_min_audio": 3.327,
+   "cifras_verdad": [
+    4
+   ],
+   "cifras_est": [
+    4
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.9523809523809523,
+    "F_fuertes_50": 0.8695652173913044,
+    "F_pulsos_100": 0.9523809523809523,
+    "F_fuertes_100": 0.8695652173913044,
+    "err_mediano_ms": 13.300000000000978,
+    "F_pulsos_200": 0.9523809523809523,
+    "F_fuertes_200": 0.8695652173913044
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.9523809523809523,
+    "F_fuertes_50": 0.8695652173913044,
+    "F_pulsos_100": 0.9523809523809523,
+    "F_fuertes_100": 0.8695652173913044,
+    "err_mediano_ms": 13.300000000000978,
+    "F_pulsos_200": 0.9523809523809523,
+    "F_fuertes_200": 0.8695652173913044
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.9369047619047619,
+    "F_fuertes_50": 0.8608695652173914,
+    "F_pulsos_100": 0.9523809523809523,
+    "F_fuertes_100": 0.8695652173913044,
+    "err_mediano_ms": 14.132500000000263,
+    "F_pulsos_200": 0.9523809523809523,
+    "F_fuertes_200": 0.8695652173913044
+   }
+  },
+  {
+   "caso": "07_compas_silencio_4x4",
+   "duracion_s": 27.0,
+   "s_por_min_audio": 1.718,
+   "cifras_verdad": [
+    4
+   ],
+   "cifras_est": [
+    4
+   ],
+   "modelo": {
+    "F_pulsos_50": 1.0,
+    "F_fuertes_50": 0.9523809523809523,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9523809523809523,
+    "err_mediano_ms": 0.0,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9523809523809523
+   },
+   "con_anclas": {
+    "F_pulsos_50": 1.0,
+    "F_fuertes_50": 0.9523809523809523,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9523809523809523,
+    "err_mediano_ms": 0.0,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9523809523809523
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.99125,
+    "F_fuertes_50": 0.9476190476190476,
+    "F_pulsos_100": 1.0,
+    "F_fuertes_100": 0.9523809523809523,
+    "err_mediano_ms": 12.429999999999861,
+    "F_pulsos_200": 1.0,
+    "F_fuertes_200": 0.9523809523809523
+   }
+  },
+  {
+   "caso": "08_cambio_4_3_5",
+   "duracion_s": 33.55,
+   "s_por_min_audio": 3.268,
+   "cifras_verdad": [
+    4,
+    3,
+    5
+   ],
+   "cifras_est": [
+    2,
+    3,
+    1,
+    4
+   ],
+   "modelo": {
+    "F_pulsos_50": 0.8210526315789474,
+    "F_fuertes_50": 0.7586206896551724,
+    "F_pulsos_100": 0.8210526315789474,
+    "F_fuertes_100": 0.7586206896551724,
+    "err_mediano_ms": 5.500000000001393,
+    "F_pulsos_200": 0.8210526315789474,
+    "F_fuertes_200": 0.7586206896551724
+   },
+   "con_anclas": {
+    "F_pulsos_50": 0.8210526315789475,
+    "F_fuertes_50": 0.8275862068965518,
+    "F_pulsos_100": 0.8210526315789475,
+    "F_fuertes_100": 0.8275862068965518,
+    "err_mediano_ms": 5.500000000001393,
+    "F_pulsos_200": 0.8210526315789475,
+    "F_fuertes_200": 0.8275862068965518
+   },
+   "con_anclas_y_tiempo": {
+    "F_pulsos_50": 0.8021052631578947,
+    "F_fuertes_50": 0.810344827586207,
+    "F_pulsos_100": 0.8210526315789475,
+    "F_fuertes_100": 0.8275862068965518,
+    "err_mediano_ms": 15.075000000000125,
+    "F_pulsos_200": 0.8210526315789475,
+    "F_fuertes_200": 0.8275862068965518
+   }
+  }
+ ]
+}

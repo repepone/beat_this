@@ -43,7 +43,7 @@ def tiempos(compases, bpm, pausas=None, silencios=(), anacrusa=0):
             t += pausas.get(i, 0.0)
             verdad.append({"t": round(t, 4), "fuerte": k == 0, "compas": c, "pulso": k})
             if c not in silencios:
-                suenan.append((t, k == 0, k))
+                suenan.append((t, k == 0, c))
             t += 60.0 / bpm_f(i)
             i += 1
     return verdad, suenan, t + 1.5
@@ -53,9 +53,9 @@ def render(suenan, dur, semilla=0):
     rng = np.random.default_rng(semilla)
     y = np.zeros(int(dur * SR) + SR)
     acordes = [(261.6, 329.6, 392.0), (220.0, 261.6, 329.6), (174.6, 220.0, 261.6), (196.0, 246.9, 293.7)]
-    for j, (t, fuerte, k) in enumerate(suenan):
+    for t, fuerte, c in suenan:
         i0 = int(t * SR)
-        ac = acordes[(j // 4) % 4]
+        ac = acordes[c % 4]  # un acorde por compás, para no contradecir la métrica
         if fuerte:
             s = nota(ac[0] / 2, 1.2, caida=2.0, amp=0.9) + 0.5 * sum(nota(f, 1.2, amp=0.4) for f in ac)
         else:

@@ -40,3 +40,13 @@ def test_ajustar_tiempo_mueve_hacia_anclas():
     corr = corregir_con_anclas(pulsos, [0.53, 6.53], ajustar_tiempo=True)
     assert abs(corr[0]["t"] - 0.53) < 1e-6
     assert abs(corr[4]["t"] - 2.53) < 1e-6
+
+
+def test_ancla_suelta_no_estropea_el_resto():
+    verdad = compas(8, 4)
+    mal = [dict(p) for p in verdad]
+    # en el compás 4 el modelo pone el fuerte un pulso antes
+    mal[16]["fuerte"], mal[15]["fuerte"] = False, True
+    anclas = [verdad[0]["t"], verdad[16]["t"] + 0.01, verdad[28]["t"]]
+    corr = corregir_con_anclas(mal, anclas)
+    assert [p["fuerte"] for p in corr] == [p["fuerte"] for p in verdad]
